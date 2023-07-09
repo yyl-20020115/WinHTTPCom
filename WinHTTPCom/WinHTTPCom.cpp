@@ -13,7 +13,7 @@ STDAPI DllCanUnloadNow(void)
 typedef HRESULT(__stdcall* P_DllGetClassObject)(_In_ REFCLSID rclsid, _In_ REFIID riid, _Outptr_ LPVOID FAR* ppv);
 
 _Check_return_
-STDAPI  DllGetClassObject(_In_ REFCLSID rclsid, _In_ REFIID riid, _Outptr_ LPVOID FAR* ppv)
+STDAPI DllGetClassObject(_In_ REFCLSID rclsid, _In_ REFIID riid, _Outptr_ LPVOID FAR* ppv)
 {
     if (riid != IID_IClassFactory || ppv == NULL)
         return E_INVALIDARG;
