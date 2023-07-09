@@ -21,11 +21,13 @@ STDMETHODIMP_(HRESULT __stdcall) CClassFactory::QueryInterface(REFIID riid, void
 
 STDMETHODIMP_(ULONG __stdcall) CClassFactory::AddRef()
 {
+    impl->AddRef();
     return ++_cRefs;
 }
 
 STDMETHODIMP_(ULONG __stdcall) CClassFactory::Release()
 {
+    impl->Release();
     if (--_cRefs == 0)
     {
         delete this;

@@ -28,12 +28,14 @@ STDAPI  DllGetClassObject(_In_ REFCLSID rclsid, _In_ REFIID riid, _Outptr_ LPVOI
     HRESULT hr = pd(rclsid, riid, &pv);
     if (hr != S_OK|| pv == 0) return CLASS_E_CLASSNOTAVAILABLE;
 
-    CClassFactory* pCF = new CClassFactory(static_cast<IClassFactory*>(pv));
+    IClassFactory* iCF = static_cast<IClassFactory*>(pv);
+    
+    CClassFactory* pCF = new CClassFactory(iCF);
 
     if (pCF!=0)
     {
-        *ppv = static_cast<IClassFactory*>(pCF);
         pCF->AddRef();
+        *ppv = static_cast<IClassFactory*>(pCF);
         return NOERROR;
     }
     else
